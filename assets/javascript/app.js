@@ -256,6 +256,11 @@ let game = [
 var counter = 0;
 var timer;
 var seconds = 15;
+var pick;
+var running = false;
+var correct = 0;
+var wrong = 0;
+var unanswered = 0;
 
 function loadQuestion(count) {
   $('.question').html(game[count].question);
@@ -263,6 +268,63 @@ function loadQuestion(count) {
   $('.b').text(game[count].answerB);
   $('.c').text(game[count].answerC);
   $('.d').text(game[count].answerD);
+}
+
+function triviaGame() {
+  if (counter === 25) {
+    $('.answerGrid').css('display', 'none');
+    $('.questionDiv').css('display', 'none');
+    $('.done').text("Finished! Here's How You Did");
+    $('.timeLeft').css('font-size', '25px');
+    $('.timeLeft').text('Correct: ' + correct);
+    $('.answerResponse').css('font-size', '25px');
+    $('.answerResponse').text('Incorrect: ' + wrong);
+    $('.correctResponse').css('font-size', '25px');
+    $('.correctResponse').text('Unanswered: ' + unanswered);
+    $('.image').attr('src', '');
+    $('.checkAnswerDiv').css('display', 'block');
+    $('.againBTN').css('display', 'block');
+  } else {
+    $('.answerGrid').css('display', 'grid');
+    $('.questionDiv').css('display', 'block');
+    $('.checkAnswerDiv').css('display', 'none');
+    $('.image').attr('src', '');
+    $('.timer').text(seconds);
+    startClock();
+    loadQuestion(counter);
+  }
+}
+
+function answer(x) {
+  if (x === 'r') {
+    $('.answerGrid').css('display', 'none');
+    $('.questionDiv').css('display', 'none');
+    $('.timeLeft').text('With ' + seconds + ' Seconds Left...');
+    $('.answerResponse').text('That is Correct!');
+    $('.correctResponse').text('');
+    $('.image').attr('src', game[counter].correctIMG);
+    $('.checkAnswerDiv').css('display', 'block');
+  } else if (x === 'w') {
+    $('.answerGrid').css('display', 'none');
+    $('.questionDiv').css('display', 'none');
+    $('.timeLeft').text('With ' + seconds + ' Seconds Left...');
+    $('.answerResponse').text('That is Incorrect!');
+    $('.correctResponse').text(
+      'The Correct Answer: ' + game[counter].correctDisplay
+    );
+    $('.image').attr('src', game[counter].correctIMG);
+    $('.checkAnswerDiv').css('display', 'block');
+  } else if (x === 'o') {
+    $('.answerGrid').css('display', 'none');
+    $('.questionDiv').css('display', 'none');
+    $('.timeLeft').text('');
+    $('.answerResponse').text('Out Of Time!');
+    $('.correctResponse').text(
+      'The Correct Answer: ' + game[counter].correctDisplay
+    );
+    $('.image').attr('src', game[counter].correctIMG);
+    $('.checkAnswerDiv').css('display', 'block');
+  }
 }
 
 // Clock functions
@@ -289,6 +351,30 @@ function stopClock() {
   clearInterval(timer);
   running = false;
 }
+
+// Click Events
+$('.answerBox').click(function() {
+  console.log($(this).attr('id'));
+  pick = $(this).attr('id');
+
+  if (pick === game[counter].correct) {
+    pick = '';
+    stopClock();
+    answer('r');
+    seconds = 15;
+    counter++;
+    correct++;
+    setTimeout(triviaGame, 4000);
+  } else if (pick !== game[counter].correct) {
+    pick = '';
+    stopClock();
+    answer('w');
+    seconds = 15;
+    counter++;
+    wrong++;
+    setTimeout(triviaGame, 4000);
+  }
+});
 
 $('.start').click(function() {
   $('.startBTN').css('display', 'none');
