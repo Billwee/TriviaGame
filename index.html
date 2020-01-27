@@ -4,11 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker|Nanum+Brush+Script|Ubuntu&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Simpsons Trivia Game</title>
   </head>
   <body>
+    <!-- Title -->
+    <div class="titleDiv">
+      <div class="imgDiv">
+        <img src="./assets/images/title.png" alt="" />
+      </div>
+      <div class="trivia">Trivia Game</div>
+    </div>
+
+    <!-- Start Game Button -->
+    <div class="startBTN">
+      <button class="start">Click Here to Start!</button>
+    </div>
+
+    <!-- Question Area -->
+    <div class="questionDiv">
+      <img src="./assets/images/chalk.gif" alt="" />
+      <div class="questionContainer">
+        <p class="question"></p>
+      </div>
+      <div class="timerDiv">
+        <div class="timer"></div>
+      </div>
+    </div>
+
+    <!-- Display after answering -->
+    <div class="checkAnswerDiv">
+      <div class="checkAnswer">
+        <p class="done"></p>
+        <p class="timeLeft"></p>
+        <p class="answerResponse"></p>
+        <p class="correctResponse"></p>
+        <img class="image" src="" alt="" />
+        <div class="againBTN">
+          <button class="again">Play Again?</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Answer Choices -->
+    <div class="answerGrid">
+      <div id="a" class="answerBox"><p class="answer a"></p></div>
+      <div id="b" class="answerBox"><p class="answer b"></p></div>
+      <div id="c" class="answerBox"><p class="answer c"></p></div>
+      <div id="d" class="answerBox"><p class="answer d"></p></div>
+    </div>
+
+    <!-- JS -->
     <script src="./assets/javascript/app.js"></script>
   </body>
 </html>
