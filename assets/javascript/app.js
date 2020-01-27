@@ -252,3 +252,40 @@ let game = [
     correctDisplay: 'Treehouse of Horror'
   }
 ];
+
+var counter = 0;
+var timer;
+var seconds = 15;
+
+function loadQuestion(count) {
+  $('.question').html(game[count].question);
+  $('.a').text(game[count].answerA);
+  $('.b').text(game[count].answerB);
+  $('.c').text(game[count].answerC);
+  $('.d').text(game[count].answerD);
+}
+
+// Clock functions
+function startClock() {
+  if (!running) {
+    timer = setInterval(function() {
+      $('.timer').text(seconds);
+      seconds--;
+      if (seconds < 0) {
+        pick = '';
+        stopClock();
+        answer('o');
+        seconds = 15;
+        counter++;
+        unanswered++;
+        setTimeout(triviaGame, 4000);
+      }
+    }, 1000);
+  }
+  running = true;
+}
+
+function stopClock() {
+  clearInterval(timer);
+  running = false;
+}
