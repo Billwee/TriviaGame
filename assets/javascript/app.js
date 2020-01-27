@@ -1,3 +1,8 @@
+// We begin with an incredibly long list of questions.
+// Haha. After finishing the game I realized that 25
+// questions is way too many.
+// I used an array of objects so each question is fully
+// accessable with a counter.
 let game = [
   {
     question: "What was the name of Bart's elephant?",
@@ -262,6 +267,8 @@ var correct = 0;
 var wrong = 0;
 var unanswered = 0;
 
+// This function loads one of  the questions onto
+// the page based on the counter.
 function loadQuestion(count) {
   $('.question').html(game[count].question);
   $('.a').text(game[count].answerA);
@@ -270,6 +277,12 @@ function loadQuestion(count) {
   $('.d').text(game[count].answerD);
 }
 
+// This function first checks if the game is over. If
+// it is then it hides the question area and answer
+// choices, displays the outcome of your play, and loads
+// the play again button. Else it reloads the question
+// and answer area, starts the timer, and loads the next
+// question.
 function triviaGame() {
   if (counter === 25) {
     $('.answerGrid').css('display', 'none');
@@ -295,6 +308,12 @@ function triviaGame() {
   }
 }
 
+// This function takes arguments from the click events
+// and the timer. All three hide the question and answer
+// area, show how much time you had left, tell you
+// correct/incorrect/out of time, and display a related
+// gif. if you're incorrect a serperate <p> loads and
+// displays the right answer.
 function answer(x) {
   if (x === 'r') {
     $('.answerGrid').css('display', 'none');
@@ -333,6 +352,8 @@ function startClock() {
     timer = setInterval(function() {
       $('.timer').text(seconds);
       seconds--;
+      // This section of the timer function is for showing
+      // the answer after time has reached zero.
       if (seconds < 0) {
         pick = '';
         stopClock();
@@ -353,6 +374,14 @@ function stopClock() {
 }
 
 // Click Events
+// This click event checks what you clicked against
+// the correct answer in the object. They both clear
+// what you picked after comparing, stops the clock,
+// runs the answer function with the corresponding string
+// resets the timer and adds 1 to the counter and
+// correct/wrong/out of time counter. After 4 seconds
+// the triviaGame function runs to display the next
+// question.
 $('.answerBox').click(function() {
   console.log($(this).attr('id'));
   pick = $(this).attr('id');
@@ -376,11 +405,17 @@ $('.answerBox').click(function() {
   }
 });
 
+// Start button which loads the first question. After
+// clicking it it hides itself and displays the first
+// question.
 $('.start').click(function() {
   $('.startBTN').css('display', 'none');
   triviaGame();
 });
 
+// Play again button which resets your question counter,
+// and your correct.wrong, and out of time counters. Then
+// runs triviaGame to restart the game.
 $('.againBTN').click(function() {
   $('.answerResponse').css('font-size', '40px');
   $('.correctResponse').css('font-size', '40px');
