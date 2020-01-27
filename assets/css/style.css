@@ -126,6 +126,7 @@ p {
 
 .answerBox:hover {
   background-color: rgb(241, 251, 152);
+  cursor: pointer;
 }
 
 .answerBox:active {
