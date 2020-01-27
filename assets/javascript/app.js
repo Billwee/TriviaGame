@@ -289,3 +289,21 @@ function stopClock() {
   clearInterval(timer);
   running = false;
 }
+
+$('.start').click(function() {
+  $('.startBTN').css('display', 'none');
+  triviaGame();
+});
+
+$('.againBTN').click(function() {
+  $('.answerResponse').css('font-size', '40px');
+  $('.correctResponse').css('font-size', '40px');
+  $('.timeLeft').css('font-size', '40px');
+  $('.done').text('');
+  $('.againBTN').css('display', 'none');
+  counter = 0;
+  correct = 0;
+  wrong = 0;
+  unanswered = 0;
+  triviaGame();
+});
