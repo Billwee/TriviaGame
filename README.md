@@ -14,6 +14,27 @@ After all twenty-five questions are asked you are taken to a display which shows
 
 You can view the application by [clicking here](https://billwee.github.io/TriviaGame/)
 
+## Application Walkthrough
+
+### Navagating to the application first presents a title screen with a start button.
+
+![Start Screen](./assets/images/walk1.PNG)
+
+### After clicking the start button you start the game. There are 25 questions and the player has 15 seconds to pick an answer or its marked incorrect.
+
+![Start Screen](./assets/images/walk2.PNG)
+
+### After picking an answer the game tells the user if they guessed correctly or not and how much time they had left. It also loads a GIF related to the question.
+
+![Start Screen](./assets/images/walk3.PNG)
+
+### Once all twenty-five questions are answered, a final results screen is loaded showing the number of correct, incorrect, and unanswered questions.
+
+![Start Screen](./assets/images/walk4.PNG)
+
+
+
+
 ## Technology Used
 
 - Javascript
